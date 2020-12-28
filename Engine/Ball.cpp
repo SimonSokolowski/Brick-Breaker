@@ -6,14 +6,30 @@ void Ball::Update(Graphics& gfx, Platform& pltfrm)
 	if (x + 8 >= gfx.ScreenWidth) vx = -vx;
 
 	if (y <= 0) vy = -vy;
-	if (y + 8 >= gfx.ScreenHeight) vy = -vy;
+	if (y + 8 >= gfx.ScreenHeight) restart = true;
 
-	if (y + 8 >= pltfrm.Gety() + (pltfrm.GetLength()/2) && x >= 
-		pltfrm.Getx() && x <= pltfrm.Getx() + pltfrm.GetLength())
-		vy = -vy, vx = -vx;
+	if (restart)
+	{
+		x = 400;
+		y = 500;
+		restart = false;
+		pltfrm.RestartPos();
+	}
 
-	if (y + 8 >= pltfrm.Gety() && x >= pltfrm.Getx() && x <= pltfrm.Getx()
-		+ pltfrm.GetLength()) vy = -vy, vx = -vx;
+	if (y + height >= pltfrm.Gety() && x >= pltfrm.Getx() && x <= pltfrm.Getx()
+		+ pltfrm.GetLength()) vy = -vy;
+
+	if (vx > 0 && y + height >= pltfrm.Gety() && x >= pltfrm.Getx()
+		&& x <= pltfrm.Getx() + (pltfrm.GetLength() / 2))
+	{
+		vx = -vx;
+	}
+	
+	if (vx < 0 && y + height >= pltfrm.Gety() && x >= (pltfrm.Getx() +
+		(pltfrm.GetLength() / 2)) && x <= (pltfrm.Getx() + pltfrm.GetLength()))
+	{
+		vx = -vx;
+	}
 
 	x += vx;
 	y += vy;

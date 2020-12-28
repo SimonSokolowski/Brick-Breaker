@@ -18,6 +18,7 @@ private:
 	int y = 500;
 	int vx = -2;
 	int vy = 2;
+	bool restart = false;
 	static constexpr int length = 8;
 	static constexpr int height = 8;
 };

@@ -8,6 +8,7 @@ class Platform
 public:
 	void Update(MainWindow& wnd, Graphics& gfx);
 	void Draw(Graphics& gfx);
+	void RestartPos();
 	int Getx();
 	int Gety();
 	int GetLength();

@@ -10,6 +10,7 @@ void Platform::Update(MainWindow& wnd, Graphics& gfx)
 	if (x + length >= gfx.ScreenWidth) vx = 0, x -= 2;
 
 	x += vx;
+
 }
 
 void Platform::Draw(Graphics& gfx)
@@ -21,6 +22,12 @@ void Platform::Draw(Graphics& gfx)
 			gfx.PutPixel(ix, iy, c);
 		}
 	}
+}
+
+void Platform::RestartPos()
+{
+	x = 350;
+	y = 550;
 }
 
 int Platform::Getx()
