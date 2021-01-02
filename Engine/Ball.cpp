@@ -1,9 +1,9 @@
 #include "Ball.h"
 
-void Ball::Update(Graphics& gfx, Platform& pltfrm)
+void Ball::Update(Graphics& gfx, Platform& pltfrm, float dt)
 {
-	x += vx;
-	y += vy;
+	x += vx * dt * 60;
+	y += vy * dt * 60;
 	
 	if (x <= 0)
 	{
@@ -54,58 +54,61 @@ void Ball::Update(Graphics& gfx, Platform& pltfrm)
 
 void Ball::Draw(Graphics& gfx)
 {
-	gfx.PutPixel(x + 0, y + 2, 255, 255, 255);
-	gfx.PutPixel(x + 0, y + 3, 255, 255, 255);
-	gfx.PutPixel(x + 0, y + 4, 255, 255, 255);
-	gfx.PutPixel(x + 0, y + 5, 255, 255, 255);
-	gfx.PutPixel(x + 1, y + 1, 255, 255, 255);
-	gfx.PutPixel(x + 1, y + 2, 255, 255, 255);
-	gfx.PutPixel(x + 1, y + 3, 255, 255, 255);
-	gfx.PutPixel(x + 1, y + 4, 255, 255, 255);
-	gfx.PutPixel(x + 1, y + 5, 255, 255, 255);
-	gfx.PutPixel(x + 1, y + 6, 255, 255, 255);
-	gfx.PutPixel(x + 2, y + 0, 255, 255, 255);
-	gfx.PutPixel(x + 2, y + 1, 255, 255, 255);
-	gfx.PutPixel(x + 2, y + 2, 255, 255, 255);
-	gfx.PutPixel(x + 2, y + 3, 255, 255, 255);
-	gfx.PutPixel(x + 2, y + 4, 255, 255, 255);
-	gfx.PutPixel(x + 2, y + 5, 255, 255, 255);
-	gfx.PutPixel(x + 2, y + 6, 255, 255, 255);
-	gfx.PutPixel(x + 2, y + 7, 255, 255, 255);
-	gfx.PutPixel(x + 3, y + 0, 255, 255, 255);
-	gfx.PutPixel(x + 3, y + 1, 255, 255, 255);
-	gfx.PutPixel(x + 3, y + 2, 255, 255, 255);
-	gfx.PutPixel(x + 3, y + 3, 255, 255, 255);
-	gfx.PutPixel(x + 3, y + 4, 255, 255, 255);
-	gfx.PutPixel(x + 3, y + 5, 255, 255, 255);
-	gfx.PutPixel(x + 3, y + 6, 255, 255, 255);
-	gfx.PutPixel(x + 3, y + 7, 255, 255, 255);
-	gfx.PutPixel(x + 4, y + 0, 255, 255, 255);
-	gfx.PutPixel(x + 4, y + 1, 255, 255, 255);
-	gfx.PutPixel(x + 4, y + 2, 255, 255, 255);
-	gfx.PutPixel(x + 4, y + 3, 255, 255, 255);
-	gfx.PutPixel(x + 4, y + 4, 255, 255, 255);
-	gfx.PutPixel(x + 4, y + 5, 255, 255, 255);
-	gfx.PutPixel(x + 4, y + 6, 255, 255, 255);
-	gfx.PutPixel(x + 4, y + 7, 255, 255, 255);
-	gfx.PutPixel(x + 5, y + 0, 255, 255, 255);
-	gfx.PutPixel(x + 5, y + 1, 255, 255, 255);
-	gfx.PutPixel(x + 5, y + 2, 255, 255, 255);
-	gfx.PutPixel(x + 5, y + 3, 255, 255, 255);
-	gfx.PutPixel(x + 5, y + 4, 255, 255, 255);
-	gfx.PutPixel(x + 5, y + 5, 255, 255, 255);
-	gfx.PutPixel(x + 5, y + 6, 255, 255, 255);
-	gfx.PutPixel(x + 5, y + 7, 255, 255, 255);
-	gfx.PutPixel(x + 6, y + 1, 255, 255, 255);
-	gfx.PutPixel(x + 6, y + 2, 255, 255, 255);
-	gfx.PutPixel(x + 6, y + 3, 255, 255, 255);
-	gfx.PutPixel(x + 6, y + 4, 255, 255, 255);
-	gfx.PutPixel(x + 6, y + 5, 255, 255, 255);
-	gfx.PutPixel(x + 6, y + 6, 255, 255, 255);
-	gfx.PutPixel(x + 7, y + 2, 255, 255, 255);
-	gfx.PutPixel(x + 7, y + 3, 255, 255, 255);
-	gfx.PutPixel(x + 7, y + 4, 255, 255, 255);
-	gfx.PutPixel(x + 7, y + 5, 255, 255, 255);
+	const int intx = int(x);
+	const int inty = int(y);
+
+	gfx.PutPixel(intx + 0, inty + 2, 255, 255, 255);
+	gfx.PutPixel(intx + 0, inty + 3, 255, 255, 255);
+	gfx.PutPixel(intx + 0, inty + 4, 255, 255, 255);
+	gfx.PutPixel(intx + 0, inty + 5, 255, 255, 255);
+	gfx.PutPixel(intx + 1, inty + 1, 255, 255, 255);
+	gfx.PutPixel(intx + 1, inty + 2, 255, 255, 255);
+	gfx.PutPixel(intx + 1, inty + 3, 255, 255, 255);
+	gfx.PutPixel(intx + 1, inty + 4, 255, 255, 255);
+	gfx.PutPixel(intx + 1, inty + 5, 255, 255, 255);
+	gfx.PutPixel(intx + 1, inty + 6, 255, 255, 255);
+	gfx.PutPixel(intx + 2, inty + 0, 255, 255, 255);
+	gfx.PutPixel(intx + 2, inty + 1, 255, 255, 255);
+	gfx.PutPixel(intx + 2, inty + 2, 255, 255, 255);
+	gfx.PutPixel(intx + 2, inty + 3, 255, 255, 255);
+	gfx.PutPixel(intx + 2, inty + 4, 255, 255, 255);
+	gfx.PutPixel(intx + 2, inty + 5, 255, 255, 255);
+	gfx.PutPixel(intx + 2, inty + 6, 255, 255, 255);
+	gfx.PutPixel(intx + 2, inty + 7, 255, 255, 255);
+	gfx.PutPixel(intx + 3, inty + 0, 255, 255, 255);
+	gfx.PutPixel(intx + 3, inty + 1, 255, 255, 255);
+	gfx.PutPixel(intx + 3, inty + 2, 255, 255, 255);
+	gfx.PutPixel(intx + 3, inty + 3, 255, 255, 255);
+	gfx.PutPixel(intx + 3, inty + 4, 255, 255, 255);
+	gfx.PutPixel(intx + 3, inty + 5, 255, 255, 255);
+	gfx.PutPixel(intx + 3, inty + 6, 255, 255, 255);
+	gfx.PutPixel(intx + 3, inty + 7, 255, 255, 255);
+	gfx.PutPixel(intx + 4, inty + 0, 255, 255, 255);
+	gfx.PutPixel(intx + 4, inty + 1, 255, 255, 255);
+	gfx.PutPixel(intx + 4, inty + 2, 255, 255, 255);
+	gfx.PutPixel(intx + 4, inty + 3, 255, 255, 255);
+	gfx.PutPixel(intx + 4, inty + 4, 255, 255, 255);
+	gfx.PutPixel(intx + 4, inty + 5, 255, 255, 255);
+	gfx.PutPixel(intx + 4, inty + 6, 255, 255, 255);
+	gfx.PutPixel(intx + 4, inty + 7, 255, 255, 255);
+	gfx.PutPixel(intx + 5, inty + 0, 255, 255, 255);
+	gfx.PutPixel(intx + 5, inty + 1, 255, 255, 255);
+	gfx.PutPixel(intx + 5, inty + 2, 255, 255, 255);
+	gfx.PutPixel(intx + 5, inty + 3, 255, 255, 255);
+	gfx.PutPixel(intx + 5, inty + 4, 255, 255, 255);
+	gfx.PutPixel(intx + 5, inty + 5, 255, 255, 255);
+	gfx.PutPixel(intx + 5, inty + 6, 255, 255, 255);
+	gfx.PutPixel(intx + 5, inty + 7, 255, 255, 255);
+	gfx.PutPixel(intx + 6, inty + 1, 255, 255, 255);
+	gfx.PutPixel(intx + 6, inty + 2, 255, 255, 255);
+	gfx.PutPixel(intx + 6, inty + 3, 255, 255, 255);
+	gfx.PutPixel(intx + 6, inty + 4, 255, 255, 255);
+	gfx.PutPixel(intx + 6, inty + 5, 255, 255, 255);
+	gfx.PutPixel(intx + 6, inty + 6, 255, 255, 255);
+	gfx.PutPixel(intx + 7, inty + 2, 255, 255, 255);
+	gfx.PutPixel(intx + 7, inty + 3, 255, 255, 255);
+	gfx.PutPixel(intx + 7, inty + 4, 255, 255, 255);
+	gfx.PutPixel(intx + 7, inty + 5, 255, 255, 255);
 }
 
 void Ball::SetVX()

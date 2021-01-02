@@ -5,6 +5,7 @@
 #include "Ball.h"
 #include "Platform.h"
 #include "Bricks.h"
+#include "FrameTimer.h"
 
 class Game
 {
@@ -22,6 +23,7 @@ private:
 
 	Platform pltfrm;
 	Ball ball;
+	FrameTimer ft;
 
 	static const int BricksLength = 50;
 	static const int BricksHeight = 5;

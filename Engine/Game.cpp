@@ -28,12 +28,14 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	const float dt = ft.Mark();
+
 	for (int i = 0; i < BricksLength; i++)
 	{
 		bricks[i].Collided(ball);
 	}
 
-	ball.Update(gfx, pltfrm);
+	ball.Update(gfx, pltfrm, dt);
 	pltfrm.Update(wnd, gfx);
 }
 
