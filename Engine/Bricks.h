@@ -24,5 +24,7 @@ private:
 	int x;
 	int y;
 	bool collided = false;
+	bool collidedy = false;
+	bool collidedx = false;
 	Color c = { 255,255,255 };
 };

@@ -23,25 +23,47 @@ void Bricks::Collided(Ball& ball)
 {
 	if (!collided)
 	{
-		if (((ball.GetX() > x && ball.GetX() < x + length) || (ball.GetX() +
-			ball.GetLength() > x && ball.GetX() + ball.GetLength() < x +
-			length)) && ((ball.GetY() == y + height || ball.GetY() +
-				ball.GetHeight() == y)))
+		if (ball.GetX() >= x && ball.GetX() <= x + length)
 		{
-			collided = true, ball.SetVY();
+			if (ball.GetY() <= y + height && ball.GetY() + ball.GetHeight()
+				>= y)
+			{
+				ball.SetVY();
+				collided = true;
+			}
+		}
+		else if (ball.GetY() >= y && ball.GetY() <= y + height)
+		{
+			if (ball.GetX() + ball.GetLength() >= x && ball.GetX() <= 
+				x + length)
+			{
+				ball.SetVX();
+				collided = true;
+			}
 		}
 	}
 
-	if (!collided)
-	{ 
-		if (((ball.GetY() > y && ball.GetY() < y + height) || (ball.GetY()
-			+ ball.GetHeight() > y && ball.GetY() + ball.GetHeight() < y 
-			+ height)) && ((ball.GetX() + ball.GetLength() == x || ball.GetX()
-			== x + length)))
-		{
-			collided = true, ball.SetVX();
-		}
-	}
+	//if (!collidedx)
+	//{
+	//	if (((ball.GetX() >= x && ball.GetX() <= x + length) || (ball.GetX() +
+	//		ball.GetLength() > x && ball.GetX() + ball.GetLength() <= x +
+	//		length)) && ((ball.GetY() <= y + height && ball.GetY() +
+	//			ball.GetHeight() >= y)))
+	//	{
+	//		collided = true, collidedx = true, ball.SetVX();
+	//	}
+	//}
+	//
+	//if (!collidedy)
+	//{ 
+	//	if (((ball.GetY() >= y && ball.GetY() <= y + height) || (ball.GetY()
+	//		+ ball.GetHeight() >= y && ball.GetY() + ball.GetHeight() <= y 
+	//		+ height)) && ((ball.GetX() + ball.GetLength() >= x && ball.GetX()
+	//		<= x + length)))
+	//	{
+	//		collided = true, collidedy = true, ball.SetVY();
+	//	}
+	//}
 }
 
 int Bricks::GetX()

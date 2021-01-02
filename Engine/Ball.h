@@ -16,8 +16,8 @@ public:
 private:
 	int x = 400;
 	int y = 500;
-	int vx = -2;
-	int vy = 2;
+	int vx = -3;
+	int vy = 3;
 	bool restart = false;
 	static constexpr int length = 8;
 	static constexpr int height = 8;

@@ -2,11 +2,31 @@
 
 void Ball::Update(Graphics& gfx, Platform& pltfrm)
 {
-	if (x <= 0) vx = -vx;
-	if (x + 8 >= gfx.ScreenWidth) vx = -vx;
+	x += vx;
+	y += vy;
+	
+	if (x <= 0)
+	{
+		vx = -vx;
+		x = 1;
+	}
+	if (x + length >= gfx.ScreenWidth)
+	{
+		x = gfx.ScreenWidth - length - 1;
+		vx = -vx;
+	}
 
-	if (y <= 0) vy = -vy;
-	if (y + 8 >= gfx.ScreenHeight) restart = true;
+	if (y <= 0)
+	{
+		vy = -vy;
+		y = 1;
+	}
+
+	if (y + height >= gfx.ScreenHeight)
+	{
+		y = gfx.ScreenHeight - height - 1;
+		restart = true;
+	}
 
 	if (restart)
 	{
@@ -30,9 +50,6 @@ void Ball::Update(Graphics& gfx, Platform& pltfrm)
 	{
 		vx = -vx;
 	}
-
-	x += vx;
-	y += vy;
 }
 
 void Ball::Draw(Graphics& gfx)
