@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "Game.h"
+#include "Vec2.h"
 
 Game::Game( MainWindow& wnd )
 	:
