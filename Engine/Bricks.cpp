@@ -23,18 +23,18 @@ void Bricks::Collided(Ball& ball)
 {
 	if (!collided)
 	{
-		if (ball.GetX() >= x && ball.GetX() <= x + length)
+		if (ball.GetPos().x >= x && ball.GetPos().x <= x + length)
 		{
-			if (ball.GetY() <= y + height && ball.GetY() + ball.GetHeight()
+			if (ball.GetPos().y <= y + height && ball.GetPos().y + ball.GetHeight()
 				>= y)
 			{
 				ball.SetVY();
 				collided = true;
 			}
 		}
-		else if (ball.GetY() >= y && ball.GetY() <= y + height)
+		else if (ball.GetPos().y >= y && ball.GetPos().y <= y + height)
 		{
-			if (ball.GetX() + ball.GetLength() >= x && ball.GetX() <= 
+			if (ball.GetPos().x + ball.GetLength() >= x && ball.GetPos().x <= 
 				x + length)
 			{
 				ball.SetVX();

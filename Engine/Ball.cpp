@@ -2,60 +2,61 @@
 
 void Ball::Update(Graphics& gfx, Platform& pltfrm, float dt)
 {
-	x += vx * dt * 60;
-	y += vy * dt * 60;
+	pos += vel * dt * 60;
 	
-	if (x <= 0)
+	if (pos.x <= 0)
 	{
-		vx = -vx;
-		x = 1;
+		vel.x = -vel.x;
+		pos.x = 1;
 	}
-	if (x + length >= gfx.ScreenWidth)
+	if (pos.x + length >= gfx.ScreenWidth)
 	{
-		x = gfx.ScreenWidth - length - 1;
-		vx = -vx;
-	}
-
-	if (y <= 0)
-	{
-		vy = -vy;
-		y = 1;
+		pos.x = gfx.ScreenWidth - length - 1;
+		vel.x = -vel.x;
 	}
 
-	if (y + height >= gfx.ScreenHeight)
+	if (pos.y <= 0)
 	{
-		y = gfx.ScreenHeight - height - 1;
+		vel.y = -vel.y;
+		pos.y = 1;
+	}
+
+	if (pos.y + height >= gfx.ScreenHeight)
+	{
+		pos.y = gfx.ScreenHeight - height - 1;
 		restart = true;
 	}
 
 	if (restart)
 	{
-		x = 400;
-		y = 500;
+		pos.x = 400;
+		pos.y = 500;
 		restart = false;
 		pltfrm.RestartPos();
 	}
 
-	if (y + height >= pltfrm.Gety() && x >= pltfrm.Getx() && x <= pltfrm.Getx()
-		+ pltfrm.GetLength()) vy = -vy;
+	if (pos.y + height >= pltfrm.GetPos().y && pos.x >= pltfrm.GetPos().x && 
+		pos.x <= pltfrm.GetPos().x + pltfrm.GetLength()) vel.y = -vel.y;
 
-	if (vx > 0 && y + height >= pltfrm.Gety() && x >= pltfrm.Getx()
-		&& x <= pltfrm.Getx() + (pltfrm.GetLength() / 2))
+	if (vel.x> 0 && pos.y + height >= pltfrm.GetPos().y && pos.x >= 
+		pltfrm.GetPos().x && pos.x <= pltfrm.GetPos().x + 
+		(pltfrm.GetLength() / 2))
 	{
-		vx = -vx;
+		vel.x= -vel.x;
 	}
 	
-	if (vx < 0 && y + height >= pltfrm.Gety() && x >= (pltfrm.Getx() +
-		(pltfrm.GetLength() / 2)) && x <= (pltfrm.Getx() + pltfrm.GetLength()))
+	if (vel.x< 0 && pos.y + height >= pltfrm.GetPos().y && pos.x >= 
+		(pltfrm.GetPos().x + (pltfrm.GetLength() / 2)) && pos.x <= 
+		(pltfrm.GetPos().x + pltfrm.GetLength()))
 	{
-		vx = -vx;
+		vel.x= -vel.x;
 	}
 }
 
 void Ball::Draw(Graphics& gfx)
 {
-	const int intx = int(x);
-	const int inty = int(y);
+	const int intx = int(pos.x);
+	const int inty = int(pos.y);
 
 	gfx.PutPixel(intx + 0, inty + 2, 255, 255, 255);
 	gfx.PutPixel(intx + 0, inty + 3, 255, 255, 255);
@@ -113,30 +114,26 @@ void Ball::Draw(Graphics& gfx)
 
 void Ball::SetVX()
 {
-	vx = -vx;
+	vel.x = -vel.x;
 }
 
 void Ball::SetVY()
 {
-	vy = -vy;
+	vel.y = -vel.y;
 }
 
-int Ball::GetX()
+Vec2 Ball::GetPos() const
 {
-	return x;
+	return pos;
 }
 
-int Ball::GetY()
-{
-	return y;
-}
 
-int Ball::GetLength()
+int Ball::GetLength() const
 {
 	return length;
 }
 
-int Ball::GetHeight()
+int Ball::GetHeight() const
 {
 	return height;
 }

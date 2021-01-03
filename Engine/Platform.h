@@ -2,6 +2,7 @@
 #include "Graphics.h"
 #include "Colors.h"
 #include "MainWindow.h"
+#include "Vec2.h"
 
 class Platform
 {
@@ -9,15 +10,13 @@ public:
 	void Update(MainWindow& wnd, Graphics& gfx);
 	void Draw(Graphics& gfx);
 	void RestartPos();
-	int Getx();
-	int Gety();
+	Vec2 GetPos();
 	int GetLength();
 private:
 	static constexpr int length = 120;
 	static constexpr int height = 8;
-	int x = 350;
-	int y = 550;
-	int vx = 0;
+	Vec2 pos = Vec2(500, 600);
+	Vec2 vel = Vec2(0, 0);
 	Color c = {13, 15, 155};
 };
 

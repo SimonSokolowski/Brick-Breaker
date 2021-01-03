@@ -1,6 +1,7 @@
 #pragma once
 #include "Graphics.h"
 #include "Platform.h"
+#include "Vec2.h"
 
 class Ball
 {
@@ -9,15 +10,12 @@ public:
 	void Draw(Graphics& gfx);
     void SetVX();
     void SetVY();
-    int GetX();
-    int GetY();
-	int GetLength();
-	int GetHeight();
+	Vec2 GetPos() const;
+	int GetLength() const;
+	int GetHeight() const;
 private:
-	float x = 400;
-	float y = 500;
-	float vx = -4;
-	float vy = 4;
+	Vec2 pos = Vec2(600.0f,600.0f);
+	Vec2 vel = Vec2(3.0f,3.0f);
 	bool restart = false;
 	static constexpr int length = 8;
 	static constexpr int height = 8;
