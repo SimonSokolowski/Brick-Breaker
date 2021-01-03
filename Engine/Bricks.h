@@ -7,10 +7,10 @@ class Bricks
 {
 public:
 	void Draw(Graphics& gfx);
-	void SetCoords(int inx, int iny, int i, int i_n);
+	void SetCoords(Vec2 pos_in, int i, int i_n);
 	void Collided(Ball& ball);
 	bool GetCollided();
-	int GetX();
+	Vec2 GetPos();
 	int GetDist();
 	int GetLength();
 	int GetHeight();
@@ -21,8 +21,7 @@ private:
 	static constexpr int length = (ScreenWidth - (dist* numBricks))
 		/ (numBricks);
 	static constexpr int height = 30;
-	int x;
-	int y;
+	Vec2 pos;
 	bool collided = false;
 	bool collidedy = false;
 	bool collidedx = false;

@@ -14,7 +14,7 @@ Game::Game( MainWindow& wnd )
 			y += bricks[i].GetHeight() + bricks[i].GetDist();
 			in = 0;
 		}
-		bricks[i].SetCoords(x, y, i, in);
+		bricks[i].SetCoords(Vec2(x, y), i, in);
 		in += 1;
 	}
 }
